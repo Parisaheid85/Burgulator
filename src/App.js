@@ -1,98 +1,58 @@
-import { useState } from "react";
 import "./App.css";
-
-import TopNav from "./TopNav";
+import { useState } from "react";
+import Reset from "./Reset";
 import Burger from "./Burger";
 import IngredientsMenu from "./IngredientsMenu";
 
 function App() {
-  // const [age, setAge] = useState({});
-  // const [numberOfChildren, setNumberOfChildren] = useState(1);
-  // const handleGetOld = () => {
-  //   setAge(age + 1);
-  // };
-  // return (
-  //   <div className="App">
-  //     <h1>I am {age} years old</h1>
-  //     <button> onClick={handleGetOld}get old</button>
+  let [cheesyLabel, setCheesyLabel] = useState("");
+  let [ingredients, setIngredients] = useState([]);
 
-  //     <h1>I have {numberOfChildren} kids</h1>
-
-  //     <button onClick={() => setNumberOfChildren(numberOfChildren + 1)}>
-  //       have more kids
-  //       </button>
-  //     </div>
-  //   );
-  // }
-
-  // export default App;
-  let [cheesyLabel, setCheesyLabel] = useState();
-  let [ingredients, setIngredients] = useState([
-    // {id: 5, name: 'tomato'}
-    // {id: 7, name: 'cheese"'}
-  ]);
-  const handleAddTomato = () => {
-    //ingredients.push
-    setIngredients(["tomato", ...ingredients]); // shallow clone
-  };
   const add = (ingredientName) => {
-    return () => setIngredients([ingredientName, ...ingredients]); // return () willl return function so we removed ()=> from line 51-53
+    return () => setIngredients([ingredientName, ...ingredients]);
   };
-  const remove = (targetIdx) => {
-    // cant use e.target cause we dont have access to index with e.target
 
+  const remove = (targetIdx) => {
     setIngredients(ingredients.filter((ing, idx) => idx !== targetIdx));
   };
 
+  const isDisabled = ingredients.filter((ing) => ing === "cheese").length >= 6;
+
   const reset = () => {
-    const newIngridients = [];
-    setIngredients(newIngridients);
+    ingredients = [];
+    setIngredients(ingredients);
   };
 
-  const handleAddCheese = () => {
-    const newIngredients = [...ingredients];
-    const burgerName = newIngredients.filter((ing) => ing === "cheese").length;
-    const isDisabled = burgerName > 6;
-    if (burgerName == 2) {
-      setCheesyLabel("Double Cheese");
-    } else if (burgerName === 3) {
-      setCheesyLabel("Triple Cheese");
-    } else if (burgerName === 4) {
-      setCheesyLabel("Quadruple Cheese");
-    } else if (burgerName === 5) {
-      setCheesyLabel("Quintuple Cheese");
-    } else if (burgerName === 6) {
-      setCheesyLabel("Maximum Cheese");
-    } else (burgerName > 6) {
-      setCheesyLabel(isDisabled)
-    }
+  const burgerName = (ingredients) => {
+    let buegerName = ingredients.filter((ing) => ing === "cheese").length;
+    return `${buegerName}cheese`;
   };
-  
-
-  const handleAddBun = () => {
-    const newIngredients = ["bun" , "bun", "bun", "bun" , "bun", "bun", "bun"]
+  if (burgerName === 2) {
+    setCheesyLabel("Double Cheese");
+  } else if (burgerName === 3) {
+    setCheesyLabel("Triple Cheese");
+  } else if (burgerName === 4) {
+    setCheesyLabel("Quadruple Cheese");
+  } else if (burgerName === 5) {
+    setCheesyLabel("Quintuple Cheese");
+  } else if (burgerName === 6) {
+    setCheesyLabel("Maximum Cheese");
   }
-  // const isDisabled = handleAddCheese() > 6;
+
+  // const handleAddBun = () => {
+  //   ingredients = ["bun", "bun", "bun", "bun", "bun", "bun", "bun"];
+  //   setIngredients(ingredients);
+
   return (
     <div className="App">
-      <TopNav reset={reset} />
-      <IngredientsMenu
-        onAdd={add}
-        cheesyLabel={cheesyLabel}
-        // isDisabled={isDisabled}
-      />
-
+      <Reset reset={reset} />
+      <IngredientsMenu onAdd={add} cheesyLabel={cheesyLabel} />
       <section className="burger-wrapper">
-        <h1>burger</h1>
+        <h1>Burger</h1>
         <Burger ingredients={ingredients} onRemove={remove} />
       </section>
     </div>
   );
 }
+
 export default App;
-
-// function add(a,b) {
-//  return a + b
-// }
-
-// btn.addEventListener.('click',() => add(1,2) )

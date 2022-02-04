@@ -16,5 +16,13 @@
 }
 
 .cheese {
-  background-color: rgb(170, 255, 0);
+  background-color: rgba(255, 255, 0, 0.879);
+}
+
+.beef {
+  background-color: brown;
+}
+
+.bun {
+  background-color: wheat;
 }
