@@ -9,7 +9,9 @@ function App() {
   let [ingredients, setIngredients] = useState([]);
 
   const add = (ingredientName) => {
-    return () => setIngredients([ingredientName, ...ingredients]);
+    return () => {
+      setIngredients([ingredientName, ...ingredients]);
+    };
   };
 
   const remove = (targetIdx) => {
@@ -23,22 +25,22 @@ function App() {
     setIngredients(ingredients);
   };
 
-  const burgerName = (ingredients) => {
-    let buegerName = ingredients.filter((ing) => ing === "cheese").length;
-    return `${buegerName}cheese`;
-  };
-  if (burgerName === 2) {
-    setCheesyLabel("Double Cheese");
-  } else if (burgerName === 3) {
-    setCheesyLabel("Triple Cheese");
-  } else if (burgerName === 4) {
-    setCheesyLabel("Quadruple Cheese");
-  } else if (burgerName === 5) {
-    setCheesyLabel("Quintuple Cheese");
-  } else if (burgerName === 6) {
-    setCheesyLabel("Maximum Cheese");
-  }
+  const handleCheesyLabel = () => {
+    const numOfCheese = ingredients.filter((ing) => ing === "cheese").length;
 
+    if (numOfCheese === 2) {
+      setCheesyLabel("Double Cheese");
+    } else if (numOfCheese === 3) {
+      setCheesyLabel("Triple Cheese");
+    } else if (numOfCheese === 4) {
+      setCheesyLabel("Quadruple Cheese");
+    } else if (numOfCheese === 5) {
+      setCheesyLabel("Quintuple Cheese");
+    } else if (numOfCheese === 6) {
+      setCheesyLabel("Maximum Cheese");
+    }
+    return cheesyLabel;
+  };
   // const handleAddBun = () => {
   //   ingredients = ["bun", "bun", "bun", "bun", "bun", "bun", "bun"];
   //   setIngredients(ingredients);
@@ -46,9 +48,14 @@ function App() {
   return (
     <div className="App">
       <Reset reset={reset} />
-      <IngredientsMenu onAdd={add} cheesyLabel={cheesyLabel} />
+      <IngredientsMenu
+        onAdd={add}
+        cheesyLabel={cheesyLabel}
+        ingredients={ingredients}
+      />
       <section className="burger-wrapper">
         <h1>Burger</h1>
+        <h3>{handleCheesyLabel()}</h3>
         <Burger ingredients={ingredients} onRemove={remove} />
       </section>
     </div>
