@@ -1,7 +1,7 @@
 const Burger = ({ ingredients, remove }) => {
   return (
     <>
-      <div className="top-bun">bun</div>
+      <div className="top-bun"></div>
       {ingredients.map((ing, index) => (
         <div
           key={index}
@@ -11,7 +11,7 @@ const Burger = ({ ingredients, remove }) => {
           {ing}
         </div>
       ))}
-      <div className="bottom-bun">bun</div>
+      <div className="bottom-bun"></div>
     </>
   );
 };

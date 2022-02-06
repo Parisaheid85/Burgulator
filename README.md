@@ -1,5 +1,7 @@
 # Getting Started with Create React App
 
+I have made this little project using React Hooks and CSS to create a yummy burger sandwitch! with using ingredients buttons you can add the ingredients in your burger and see the name of your burger sabdwitch.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

@@ -1,6 +1,11 @@
 import "./IngredientsMenu.css";
-export default function IngredientsMenu({ onAdd, cheesyLabel, ingredients }) {
+export default function IngredientsMenu({
+  onAdd,
+  ingredients,
+  handleCheesyLabel,
+}) {
   const isDisabled = ingredients.filter((ing) => ing === "cheese").length > 6;
+
   return (
     <div>
       <section className="ingredients-menu">
@@ -13,7 +18,6 @@ export default function IngredientsMenu({ onAdd, cheesyLabel, ingredients }) {
         <button onClick={onAdd("tomato")}>Tomato</button>
         <button onClick={onAdd("lettuce")}>Lettuce</button>
         <button onClick={onAdd("bun")}>Bun</button>
-        <h3>hghghghg</h3>
       </section>
     </div>
   );
