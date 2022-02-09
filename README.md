@@ -2,7 +2,7 @@
 
 # Getting Started with Create React App
 
-I have made this little project using React Hooks and CSS to create a yummy burger sandwitch! with using ingredients buttons you can add the ingredients in your burger and see the name of your burger sandwitch.
+I have made this little project using React Hooks and CSS to create a burger sandwitch using ingredients buttons to add the ingredients to make the burger and see the name of the burger sandwitch.
 
 ![Screen Shot 2022-02-06 at 6 06 27 pm](https://user-images.githubusercontent.com/93959231/152671205-ee724ded-8b1a-4acf-835c-0bccb5f9fca1.png)
 
